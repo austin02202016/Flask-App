@@ -3,24 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Flask App</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
-            padding: 20px;
-        }
-        h1 {
-            color: #007bff;
-        }
-        p {
-            font-size: 1.2em;
-        }
-    </style>
+    <title>OpenAI Response</title>
 </head>
 <body>
-    <h1>Welcome to My Flask App!</h1>
-    <p>This is a basic HTML page rendered by Flask.</p>
+    <h1>Ask OpenAI</h1>
+    <form action="/get_response" method="post">
+        <label for="user_input">Enter your question:</label>
+        <input type="text" id="user_input" name="user_input" required>
+        <button type="submit">Submit</button>
+    </form>
+    {% if response %}
+        <h2>Response:</h2>
+        <p>{{ response }}</p>
+    {% endif %}
 </body>
 </html>
