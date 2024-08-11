@@ -11,7 +11,7 @@ app = Flask(__name__)
 
 # Set OpenAI API key
 openai.api_key = os.getenv("OPENAI_API_KEY")
-
+# https://github.com/austin02202016/Flask-App.git
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -28,5 +28,5 @@ def get_response():
     message = completion.choices[0].message.content
     return message
 
-if __name__ == '__main__':
-    app.run(debug=True)
+if __name__ == "__main__":
+    app.run(debug=True)  # Comment this out
