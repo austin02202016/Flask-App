@@ -2,6 +2,8 @@ from flask import Flask, render_template, request
 import openai
 import os
 from dotenv import load_dotenv
+import streamlit as st
+
 
 # Load environment variables from .env file
 load_dotenv()
@@ -28,5 +30,16 @@ def get_response():
     message = completion.choices[0].message.content
     return message
 
+# Streamlit interface
+def main():
+    st.title("Flask and Streamlit Integration")
+    user_input = st.text_input("Enter your input:")
+    
+    if st.button("Get Response"):
+        # Using Flask's test client to simulate a POST request
+        with app.test_client() as client:
+            response = client.post('/get_response', data={'user_input': user_input})
+            st.write("Response:", response.get_data(as_text=True))
+
 if __name__ == "__main__":
-    app.run(debug=True)  # Comment this out
+    main()  # Streamlit manages the server, so we don't need app.run()
